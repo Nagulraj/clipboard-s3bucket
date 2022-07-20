@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>File Uploader</title>
+  </head>
+  <body>
+    
+        <h4>File Uploader</h4>
+        
+        {{ result.result }}
+        
+        {% if result.result == 1 %}
+        <div>File Uploaded</div>
+        
+        <div>
+          <img src="{{filepath}}" width=400 height=400 />
+        </div>
+  		{% else %}
+    		<div>Error : {{ result.error }}</div>
+  		{% endif %}
+
+        
+	
+        <input type="text" value="{{ link }}" id="myInput">
+        <button onclick="myFunction()">Copy text</button>
+        
+        <script>
+        function myFunction() {
+          /* Get the text field */
+          var copyText = document.getElementById("myInput");
+        
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        
+          /* Copy the text inside the text field */
+          navigator.clipboard.writeText(copyText.value);
+          
+          /* Alert the copied text */
+          alert("Copied the text: " + copyText.value);
+        }
+        </script>
+  </body>
+  </html>
+
+
+
+

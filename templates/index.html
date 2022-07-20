@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="upload_file" method="POST" enctype="multipart/form-data">
+        <h4>File Uploader</h4>
+        <input type="file" name="file" id="file">
+        <input type="submit" value="Upload"/>
+    </form>
+
+    <img alt="Preview" id="imagePreview">
+
+    <script>
+        window.addEventListener("paste", e => {
+            if (e.clipboardData.files.length > 0) {
+                const fileInput = document.querySelector("#file");
+
+
+                fileInput.files = e.clipboardData.files;
+
+                
+                if (e.clipboardData.files[0].type.startsWith("image/")) {
+                   
+                    setPreviewImage(e.clipboardData.files[0]);
+                }
+            }
+        });
+
+        function setPreviewImage(file) {
+            const fileReader = new FileReader();
+
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                document.querySelector("#imagePreview").src = fileReader.result;
+            };
+        }
+    </script>
+</body>
+</html>
